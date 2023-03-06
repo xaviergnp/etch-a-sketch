@@ -13,7 +13,13 @@ function colorOnHover() {
 
         square.addEventListener("mouseover", e => {
             if(!controlSwitch || (controlSwitch && mouseHold)) {
-                e.target.style.backgroundColor = "red";
+                if(randomColorSwitch && e.target.style.backgroundColor != "red") {
+                    e.target.style.backgroundColor = `hsl(${e.target.dataset.hue},${e.target.dataset.saturation}%,${e.target.dataset.lightness}%)`;
+                    if ( e.target.dataset.lightness >10) e.target.dataset.lightness -=10;
+                } 
+                else if (!randomColorSwitch && e.target.style.backgroundColor == "") {
+                    e.target.style.backgroundColor = "red";
+                }
             }
         });
     });
@@ -54,6 +60,9 @@ function createGrid() {
         for(let y=0; y<gridColSize; y++) {
             const gridColSquare = document.createElement("div");
             gridColSquare.classList.add("grid-column-square");
+            gridColSquare.dataset.hue = parseInt(Math.random()*360);
+            gridColSquare.dataset.saturation = parseInt(Math.random()*100);
+            gridColSquare.dataset.lightness = 90;
             gridColSquare.style.cssText = `
                 flex: 1 0 auto;
                 display: flex;
