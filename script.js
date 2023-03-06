@@ -87,12 +87,18 @@ function newGrid() {
         let gridValue = prompt("Enter Row Size and Column size separated by space (e.g. 16 16).").split(" ");
 
         while(!(gridValue[0]>0 && gridValue[0]<=70 && gridValue[1]>0 && gridValue[1]<=70)) {
-            alert("Input values must be between 1 to 70");
+            alert("Both values must be between 1 to 70!");
             gridValue = prompt("Enter Row Size and Column size separated by space (e.g. 16 16).").split(" ");
         }
 
         gridRowSize=gridValue[0];
         gridColSize=gridValue[1];
+
+        if(gridRowSize>25 && gridRowSize<=35) gridWidth.style.width = "1000px";
+        else if (gridRowSize>35 && gridRowSize<=45) gridWidth.style.width = "1400px";
+        else if (gridRowSize>45 && gridRowSize<=55) gridWidth.style.width = "1800px";
+        else if (gridRowSize>55) gridWidth.style.width = "1890px";
+
         gridContainer.replaceChildren();
         createGrid();
     });
@@ -111,6 +117,7 @@ const mouseHoverSwitch = document.getElementById("switch-hover");
 const gridSubHeading = document.querySelector(".grid-display-size");
 const gridContainer = document.querySelector(".grid-container");
 const gridRandomColor = document.getElementById("random-color");
+const gridWidth = document.querySelector(".grid-container");
 
 createGrid();
 
