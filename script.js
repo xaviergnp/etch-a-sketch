@@ -29,8 +29,7 @@ function clearGrid() {
 
 function switchMouseControl() {
     mouseHoverSwitch.addEventListener("click", e => {
-        if(controlSwitch == false) controlSwitch = true;
-        else controlSwitch = false;
+        controlSwitch = controlSwitch == false ? true : false;
     });
 }
 
