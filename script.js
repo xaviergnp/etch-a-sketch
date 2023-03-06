@@ -2,16 +2,33 @@
 function colorOnHover() {
     const gridSquares = document.querySelectorAll(".grid-column-square");
     gridSquares.forEach(square=> {
-        square.addEventListener(["mouseover","mousedown"], e => {
-            e.target.style.cssText += `background-color: red;`;
+        square.addEventListener("mouseover", e => {
+            if(mouseSwitchHold && mouseColorHold) {
+                e.target.style.backgroundColor = "red";
+            }
+            else if (!mouseSwitchHold)  { 
+                e.target.style.backgroundColor = "red";
+            }
         });
     });
 }
 
+function getMouseDown() {
+    gridContainer.addEventListener("mousedown", ms => { 
+        mouseColorHold = true;
+        
+    });
+
+    gridContainer.addEventListener("mouseup", ms => { 
+        mouseColorHold = false;
+    });
+
+}
+
 function switchMouseControl() {
     mouseHoverSwitch.addEventListener("click", e => {
-        if(mouseControl == "mouseover") mouseControl=["mouseover","mousedown"];
-        else mouseControl="mouseover";
+        if(mouseSwitchHold == false) mouseSwitchHold = true;
+        else mouseSwitchHold = false;
     });
 }
 
@@ -21,7 +38,9 @@ const gridNew = document.getElementById("new-grid");
 const gridClear = document.getElementById("clear-grid");
 const mouseHoverSwitch = document.getElementById("switch-hover");
 
-let mouseControl = "mouseover";
+let mouseSwitchHold = false;
+
+let mouseColorHold = false;
 
 const gridSubHeading = document.querySelector(".grid-display-size");
 gridSubHeading.textContent = `${gridRowSize} x ${gridColSize} Grid`;
@@ -54,4 +73,6 @@ for(let x=0; x<gridRowSize; x++) {
 }
 
 switchMouseControl();
+getMouseDown();
+
 colorOnHover();
