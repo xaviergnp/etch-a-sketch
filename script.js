@@ -1,4 +1,13 @@
 "use strict";
+function colorOnHover() {
+    const gridSquares = document.querySelectorAll(".grid-column-square");
+    gridSquares.forEach(square=> {
+        square.addEventListener("mouseover", e => {
+            e.target.style.cssText += `background-color: red;`;
+        });
+    });
+}
+
 let gridRowSize = 16;
 let gridColSize = 16; 
 const gridSubHeading = document.querySelector(".grid-display-size");
@@ -30,4 +39,6 @@ for(let x=0; x<gridRowSize; x++) {
         gridRowContainer.appendChild(gridColSquare);
     }
 }
+
+colorOnHover();
 
