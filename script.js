@@ -2,14 +2,27 @@
 function colorOnHover() {
     const gridSquares = document.querySelectorAll(".grid-column-square");
     gridSquares.forEach(square=> {
-        square.addEventListener("mouseover", e => {
+        square.addEventListener(mouseControl, e => {
             e.target.style.cssText += `background-color: red;`;
         });
     });
 }
 
+function switchMouseControl() {
+    mouseHoverSwitch.addEventListener("click", e => {
+        if(mouseControl == "mouseover") mouseControl="";
+        else mouseControl="";
+    });
+}
+
 let gridRowSize = 16;
 let gridColSize = 16; 
+const gridNew = document.getElementById("new-grid");
+const gridClear = document.getElementById("clear-grid");
+const mouseHoverSwitch = document.getElementById("switch-hover");
+
+let mouseControl = "mouseover";
+
 const gridSubHeading = document.querySelector(".grid-display-size");
 gridSubHeading.textContent = `${gridRowSize} x ${gridColSize} Grid`;
  
