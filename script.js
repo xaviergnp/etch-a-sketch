@@ -39,6 +39,46 @@ function switchMouseControl() {
     });
 }
 
+function createGrid() {
+    gridSubHeading.textContent = `${gridRowSize} x ${gridColSize} Grid`;
+    for(let x=0; x<gridRowSize; x++) {
+        const gridRowContainer = document.createElement("div");
+        gridRowContainer.classList.add("grid-row");
+        gridRowContainer.style.cssText = `
+            display: flex;
+        `;
+        gridContainer.appendChild(gridRowContainer);
+    
+        for(let y=0; y<gridColSize; y++) {
+            const gridColSquare = document.createElement("div");
+            gridColSquare.classList.add("grid-column-square");
+            gridColSquare.style.cssText = `
+                flex: 1 0 auto;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border: 2px solid green;
+                margin: 2px;
+                aspect-ratio: 1 / 1 ;
+            `;
+            gridColSquare.textContent = `${y+1}`;
+            gridRowContainer.appendChild(gridColSquare);
+        }
+    }
+}
+
+function getNewGrid() {
+    gridNew.addEventListener("click", e=> {
+        let gridValue = prompt("Enter Row Size and Column size separated by space (e.g. 16 16).").split(" ");
+        gridRowSize=gridValue[0];
+        gridColSize=gridValue[1];
+        gridContainer.replaceChildren();
+        createGrid();
+        gridSquares = document.querySelectorAll(".grid-column-square");
+        colorOnHover();
+    });
+}
+
 let gridRowSize = 16;
 let gridColSize = 16; 
 const gridNew = document.getElementById("new-grid");
@@ -51,36 +91,15 @@ let mouseSwitchHold = false;
 let mouseColorHold = false;
 
 const gridSubHeading = document.querySelector(".grid-display-size");
-gridSubHeading.textContent = `${gridRowSize} x ${gridColSize} Grid`;
+
  
 const gridContainer = document.querySelector(".grid-container");
 
-for(let x=0; x<gridRowSize; x++) {
-    const gridRowContainer = document.createElement("div");
-    gridRowContainer.classList.add("grid-row");
-    gridRowContainer.style.cssText = `
-        display: flex;
-    `;
-    gridContainer.appendChild(gridRowContainer);
+createGrid();
 
-    for(let y=0; y<gridColSize; y++) {
-        const gridColSquare = document.createElement("div");
-        gridColSquare.classList.add("grid-column-square");
-        gridColSquare.style.cssText = `
-            flex: 1 0 auto;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border: 2px solid green;
-            margin: 2px;
-            aspect-ratio: 1 / 1 ;
-        `;
-        gridColSquare.textContent = `${y+1}`;
-        gridRowContainer.appendChild(gridColSquare);
-    }
-}
+let gridSquares = document.querySelectorAll(".grid-column-square");
 
-const gridSquares = document.querySelectorAll(".grid-column-square");
+getNewGrid();
 
 switchMouseControl();
 getMouseDown();
