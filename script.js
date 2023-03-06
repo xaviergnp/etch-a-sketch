@@ -1,11 +1,18 @@
 "use strict";
 function colorOnHover() {
+    let mouseHold = false;
     gridSquares.forEach(square=> {
+        gridContainer.addEventListener("mouseup", () =>  {
+            mouseHold = false;
+            
+        });
+        gridContainer.addEventListener("mousedown", () =>  {
+            mouseHold = true;
+            
+        });
+
         square.addEventListener("mouseover", e => {
-            if(mouseSwitchHold && mouseColorHold) {
-                e.target.style.backgroundColor = "red";
-            }
-            else if (!mouseSwitchHold)  { 
+            if(!controlSwitch || (controlSwitch && mouseHold)) {
                 e.target.style.backgroundColor = "red";
             }
         });
@@ -20,22 +27,10 @@ function clearGrid() {
     });
 }
 
-function getMouseDown() {
-    gridContainer.addEventListener("mousedown", ms => { 
-        mouseColorHold = true;
-        
-    });
-
-    gridContainer.addEventListener("mouseup", ms => { 
-        mouseColorHold = false;
-    });
-
-}
-
 function switchMouseControl() {
     mouseHoverSwitch.addEventListener("click", e => {
-        if(mouseSwitchHold == false) mouseSwitchHold = true;
-        else mouseSwitchHold = false;
+        if(controlSwitch == false) controlSwitch = true;
+        else controlSwitch = false;
     });
 }
 
@@ -44,9 +39,7 @@ function createGrid() {
     for(let x=0; x<gridRowSize; x++) {
         const gridRowContainer = document.createElement("div");
         gridRowContainer.classList.add("grid-row");
-        gridRowContainer.style.cssText = `
-            display: flex;
-        `;
+        gridRowContainer.style.cssText = `display: flex;`;
         gridContainer.appendChild(gridRowContainer);
     
         for(let y=0; y<gridColSize; y++) {
@@ -65,6 +58,8 @@ function createGrid() {
             gridRowContainer.appendChild(gridColSquare);
         }
     }
+    gridSquares = document.querySelectorAll(".grid-column-square");
+
 }
 
 function getNewGrid() {
@@ -74,35 +69,27 @@ function getNewGrid() {
         gridColSize=gridValue[1];
         gridContainer.replaceChildren();
         createGrid();
-        gridSquares = document.querySelectorAll(".grid-column-square");
-        colorOnHover();
     });
 }
 
 let gridRowSize = 16;
-let gridColSize = 16; 
+let gridColSize = 16;
+let controlSwitch = false;
+let mouseOnHold = false;
+let gridSquares; 
+
 const gridNew = document.getElementById("new-grid");
 const gridClear = document.getElementById("clear-grid");
 const mouseHoverSwitch = document.getElementById("switch-hover");
-
-
-let mouseSwitchHold = false;
-
-let mouseColorHold = false;
-
 const gridSubHeading = document.querySelector(".grid-display-size");
-
- 
 const gridContainer = document.querySelector(".grid-container");
 
 createGrid();
 
-let gridSquares = document.querySelectorAll(".grid-column-square");
-
 getNewGrid();
 
-switchMouseControl();
-getMouseDown();
-
 colorOnHover();
+
+switchMouseControl();
+
 clearGrid();
