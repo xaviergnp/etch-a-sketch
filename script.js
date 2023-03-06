@@ -63,7 +63,7 @@ function createGrid() {
 
 }
 
-function getNewGrid() {
+function newGrid() {
     gridNew.addEventListener("click", e=> {
         let gridValue = prompt("Enter Row Size and Column size separated by space (e.g. 16 16).").split(" ");
         gridRowSize=gridValue[0];
@@ -87,9 +87,7 @@ const gridContainer = document.querySelector(".grid-container");
 
 createGrid();
 
-getNewGrid();
-
-
+newGrid();
 
 switchMouseControl();
 
