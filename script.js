@@ -35,6 +35,14 @@ function switchMouseControl() {
     });
 }
 
+function randomColor() {
+    gridRandomColor.addEventListener("click", e => {
+        randomColorSwitch = randomColorSwitch == false? true: false;
+        if(randomColorSwitch) e.target.style.backgroundColor = "rgb(55, 151, 206)";
+        else e.target.style.backgroundColor = "azure";
+    });
+}
+
 function createGrid() {
     gridSubHeading.textContent = `${gridRowSize} x ${gridColSize} Grid`;
     for(let x=0; x<gridRowSize; x++) {
@@ -60,6 +68,7 @@ function createGrid() {
         }
     }
     gridSquares = document.querySelectorAll(".grid-column-square");
+    randomColor();
     colorOnHover();
 
 }
@@ -79,12 +88,14 @@ let gridColSize = 16;
 let controlSwitch = false;
 let mouseOnHold = false;
 let gridSquares; 
+let randomColorSwitch = false;
 
 const gridNew = document.getElementById("new-grid");
 const gridClear = document.getElementById("clear-grid");
 const mouseHoverSwitch = document.getElementById("switch-hover");
 const gridSubHeading = document.querySelector(".grid-display-size");
 const gridContainer = document.querySelector(".grid-container");
+const gridRandomColor = document.getElementById("random-color");
 
 createGrid();
 
