@@ -77,8 +77,6 @@ function createGrid() {
     }
     gridSquares = document.querySelectorAll(".grid-column-square");
     colorOnHover();
-
-
 }
 
 function newGrid() {
