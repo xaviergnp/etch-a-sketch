@@ -43,7 +43,6 @@ function switchMouseControl() {
 
 function randomColor() {
     gridRandomColor.addEventListener("click", e => {
-        console.log(randomColorSwitch,e.target);
         randomColorSwitch = randomColorSwitch == false? true: false;
         if(randomColorSwitch) e.target.style.backgroundColor = "rgb(55, 151, 206)";
         else e.target.style.backgroundColor = "azure";
