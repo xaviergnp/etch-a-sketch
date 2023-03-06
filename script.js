@@ -64,13 +64,13 @@ function createGrid() {
             gridColSquare.dataset.saturation = parseInt(Math.random()*100);
             gridColSquare.dataset.lightness = 90;
             gridColSquare.style.cssText = `
-                flex: 1 0 auto;
+                flex: auto;
                 display: flex;
                 align-items: center;
                 justify-content: center;
                 border: 2px solid green;
                 margin: 2px;
-                aspect-ratio: 1 / 1 ;
+                width: 100%;
             `;
             gridColSquare.textContent = `${y+1}`;
             gridRowContainer.appendChild(gridColSquare);
@@ -86,8 +86,8 @@ function newGrid() {
     gridNew.addEventListener("click", e=> {
         let gridValue = prompt("Enter Row Size and Column size separated by space (e.g. 16 16).").split(" ");
 
-        while(!(gridValue[0]>0 && gridValue[0]<=100 && gridValue[1]>0 && gridValue[1]<=100)) {
-            alert("Input values must be between 1 to 100");
+        while(!(gridValue[0]>0 && gridValue[0]<=70 && gridValue[1]>0 && gridValue[1]<=70)) {
+            alert("Input values must be between 1 to 70");
             gridValue = prompt("Enter Row Size and Column size separated by space (e.g. 16 16).").split(" ");
         }
 
