@@ -31,5 +31,9 @@
     display: flex;
     justify-content: center;
     gap: 10px;
+}
 
+.grid-button > button {
+    background-color: azure;
+    height: 30px;
 }

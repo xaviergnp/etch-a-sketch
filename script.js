@@ -22,7 +22,7 @@ function colorOnHover() {
 function clearGrid() {
     gridClear.addEventListener("click", e=> {
         gridSquares.forEach(square=> {
-            square.style.backgroundColor = "transparent";
+            square.style.backgroundColor = "initial";
         });
     });
 }
@@ -30,6 +30,8 @@ function clearGrid() {
 function switchMouseControl() {
     mouseHoverSwitch.addEventListener("click", e => {
         controlSwitch = controlSwitch == false ? true : false;
+        if(controlSwitch) e.target.style.backgroundColor = "rgb(55, 151, 206)";
+        else e.target.style.backgroundColor = "azure";
     });
 }
 
