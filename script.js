@@ -59,6 +59,7 @@ function createGrid() {
         }
     }
     gridSquares = document.querySelectorAll(".grid-column-square");
+    colorOnHover();
 
 }
 
@@ -88,7 +89,7 @@ createGrid();
 
 getNewGrid();
 
-colorOnHover();
+
 
 switchMouseControl();
 
