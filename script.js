@@ -2,7 +2,7 @@
 function colorOnHover() {
     const gridSquares = document.querySelectorAll(".grid-column-square");
     gridSquares.forEach(square=> {
-        square.addEventListener(mouseControl, e => {
+        square.addEventListener(["mouseover","mousedown"], e => {
             e.target.style.cssText += `background-color: red;`;
         });
     });
@@ -10,8 +10,8 @@ function colorOnHover() {
 
 function switchMouseControl() {
     mouseHoverSwitch.addEventListener("click", e => {
-        if(mouseControl == "mouseover") mouseControl="";
-        else mouseControl="";
+        if(mouseControl == "mouseover") mouseControl=["mouseover","mousedown"];
+        else mouseControl="mouseover";
     });
 }
 
@@ -53,5 +53,5 @@ for(let x=0; x<gridRowSize; x++) {
     }
 }
 
+switchMouseControl();
 colorOnHover();
-
