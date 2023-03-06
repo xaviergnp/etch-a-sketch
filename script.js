@@ -85,6 +85,12 @@ function createGrid() {
 function newGrid() {
     gridNew.addEventListener("click", e=> {
         let gridValue = prompt("Enter Row Size and Column size separated by space (e.g. 16 16).").split(" ");
+
+        while(!(gridValue[0]>0 && gridValue[0]<=100 && gridValue[1]>0 && gridValue[1]<=100)) {
+            alert("Input values must be between 1 to 100");
+            gridValue = prompt("Enter Row Size and Column size separated by space (e.g. 16 16).").split(" ");
+        }
+
         gridRowSize=gridValue[0];
         gridColSize=gridValue[1];
         gridContainer.replaceChildren();
