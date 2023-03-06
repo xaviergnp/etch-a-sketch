@@ -28,7 +28,7 @@ function colorOnHover() {
 function clearGrid() {
     gridClear.addEventListener("click", e=> {
         gridSquares.forEach(square=> {
-            square.style.backgroundColor = "initial";
+            square.style.backgroundColor = "";
         });
     });
 }
@@ -43,6 +43,7 @@ function switchMouseControl() {
 
 function randomColor() {
     gridRandomColor.addEventListener("click", e => {
+        console.log(randomColorSwitch,e.target);
         randomColorSwitch = randomColorSwitch == false? true: false;
         if(randomColorSwitch) e.target.style.backgroundColor = "rgb(55, 151, 206)";
         else e.target.style.backgroundColor = "azure";
@@ -70,15 +71,14 @@ function createGrid() {
                 justify-content: center;
                 border: 2px solid green;
                 margin: 2px;
-                width: 100%;
             `;
             gridColSquare.textContent = `${y+1}`;
             gridRowContainer.appendChild(gridColSquare);
         }
     }
     gridSquares = document.querySelectorAll(".grid-column-square");
-    randomColor();
     colorOnHover();
+
 
 }
 
@@ -94,10 +94,10 @@ function newGrid() {
         gridRowSize=gridValue[0];
         gridColSize=gridValue[1];
 
-        if(gridRowSize>25 && gridRowSize<=35) gridWidth.style.width = "1000px";
-        else if (gridRowSize>35 && gridRowSize<=45) gridWidth.style.width = "1400px";
-        else if (gridRowSize>45 && gridRowSize<=55) gridWidth.style.width = "1800px";
-        else if (gridRowSize>55) gridWidth.style.width = "1890px";
+        if(gridRowSize>25 && gridRowSize<=35) gridContainer.style.width = "1000px";
+        else if (gridRowSize>35 && gridRowSize<=45) gridContainer.style.width = "1400px";
+        else if (gridRowSize>45 && gridRowSize<=55) gridContainer.style.width = "1800px";
+        else if (gridRowSize>55) gridContainer.style.width = "1890px";
 
         gridContainer.replaceChildren();
         createGrid();
@@ -117,9 +117,9 @@ const mouseHoverSwitch = document.getElementById("switch-hover");
 const gridSubHeading = document.querySelector(".grid-display-size");
 const gridContainer = document.querySelector(".grid-container");
 const gridRandomColor = document.getElementById("random-color");
-const gridWidth = document.querySelector(".grid-container");
 
 createGrid();
+randomColor();
 
 newGrid();
 
